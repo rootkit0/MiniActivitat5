@@ -1,7 +1,4 @@
-
 package com.coreservlets.widgets;
-
-import java.util.ArrayList;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -116,15 +113,12 @@ public class ButtonActivity extends Activity {
         String message = String.format(mPlantillaMensajeToggleBoton, status, label);
         showToast(message);
     }
-    
-    
+
     private void showToast(String text) {
-    	Toast.makeText(this, text, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, text, Toast.LENGTH_LONG).show();
     }
 
-  
     private class RadioGroupInfo implements OnCheckedChangeListener {
-
         private RadioButton mLastChecked;
         private String mPlantillaMensajeNuevaSeleccion;
         private String mPlantillaMensajeSeleccionCambiada;

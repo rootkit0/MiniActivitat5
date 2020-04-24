@@ -12,15 +12,16 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class ListViewActivity extends Activity {
+public class ListViewActivity extends Activity implements AdapterView.OnItemClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listview);
-        ArrayAdapter<String> gridAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getFutureAndroidVendors());
+        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getFutureAndroidVendors());
         ListView list = (ListView) findViewById(R.id.listview);
-        list.setAdapter(gridAdapter);
-        list.setOnItemClickListener(new ListViewClass());
+        list.setAdapter(listAdapter);
+        //list.setOnItemClickListener(new ListViewClass());
+        list.setOnItemClickListener(this);
     }
 
     private List<String> getFutureAndroidVendors() {
@@ -34,6 +35,7 @@ public class ListViewActivity extends Activity {
         Toast.makeText(this, text, Toast.LENGTH_LONG).show();
     }
 
+    /*
     private class ListViewClass implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> grid, View selectedView, int selectedIndex, long id) {
@@ -41,5 +43,12 @@ public class ListViewActivity extends Activity {
             String message = String.format(getString(R.string.plantilla_mensaje_gridview), selection);
             showToast(message);
         }
+    }
+    */
+
+    public void onItemClick(AdapterView<?> list, View selectedView, int position, long id) {
+        String selection = list.getItemAtPosition(position).toString();
+        String message = String.format(getString(R.string.plantilla_mensaje_listview), selection);
+        showToast(message);
     }
 }
